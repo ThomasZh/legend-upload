@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <!-- Meta, title, CSS, favicons, etc. -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Cache-Control" content="no-cache">
+
+  <title>jQuery File Upload Example</title>
+  <style>
+    .bar {
+      height: 18px;
+      background: green;
+    }
+  </style>
+</head>
+
+<body>
+  <form enctype="multipart/form-data" action="/api/upload/video" method="post">
+    <input id="fileupload" type="file" name="files[]" data-url="/api/upload/video" multiple>
+    <script src="/static/js/jquery.3.1.0.js"></script>
+    <script src="/static/js/jquery.ui.widget.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/jquery.fileupload.js"></script>
+    <script>
+      $(function() {
+        $('#fileupload').fileupload({
+          dataType: 'json',
+          done: function(e, data) {
+            $.each(data.result.files, function(index, file) {
+              $('<p/>').text(file.name + "  " + file.size).appendTo(document.body);
+            });
+          },
+          progressall: function(e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .bar').css('width', progress + '%');
+          }
+        });
+      });
+    </script>
+    <div id="progress">
+      <div class="bar" style="width: 10%;"></div>
+    </div>
+  </form>
+</body>
+
+</html>

@@ -36,6 +36,7 @@ from tornado.escape import json_encode, json_decode
 from tornado.httpclient import *
 from tornado.httputil import url_concat
 from bson import json_util
+import qcloud_video
 
 from comm import *
 from global_const import *
@@ -64,6 +65,17 @@ class UploadVideoXHR(tornado.web.RequestHandler):
 
         size = os.path.getsize(oldpath)
         logging.info("got size=[%r]", size)
+
+        # upload to qcloud_video
+        appid = "10070962"
+        secret_id = "AKIDk2B9NPwaSDpGVYr1VmlaElBRYXKvcYZO"
+        secret_key = "lLj0iJiuuskQyQBqKeCbsxufEbnmbFhy"
+        bucket_name = "legend"
+        video = qcloud_video.Video(appid, secret_id, secret_key)
+        upload_filename = generate_uuid_str()
+        logging.info("got upload_filename %r", upload_filename)
+        result = video.upload(oldpath, bucket_name, 'demo/'+upload_filename+'.mp4', 'http://video-cover.jpg', 'title', 'desc')
+        logging.info("got result %r", result)
 
         files = []
         files.append({"name":name,"type":content_type,"size":size})

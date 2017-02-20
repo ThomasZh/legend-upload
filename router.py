@@ -16,8 +16,8 @@ def map():
 
     config = [
 
-        ('/api/upload/video', getattr(api_upload, 'UploadVideoXHR')),
-        ('/api/upload/image', getattr(api_upload, 'UploadImageXHR')),
+        ('/upload/video', getattr(api_upload, 'UploadVideoXHR')),
+        ('/upload/image', getattr(api_upload, 'UploadImageXHR')),
 
         ('/demo/upload/index', getattr(demo, 'DemoUploadIndexXHR')),
 

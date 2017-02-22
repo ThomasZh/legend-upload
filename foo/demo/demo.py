@@ -42,7 +42,7 @@ from global_const import *
 
 
 # /demo/upload/index
-class DemoUploadIndexXHR(tornado.web.RequestHandler):
+class DemoUploadIndexHandler(tornado.web.RequestHandler):
     # 上传视频文件
     @tornado.web.asynchronous
     @tornado.gen.coroutine
@@ -50,3 +50,14 @@ class DemoUploadIndexXHR(tornado.web.RequestHandler):
         logging.info(self.request)
 
         self.render('demo/upload.html')
+
+
+# /demo/audio/play
+class DemoUpAudioPlayHandler(tornado.web.RequestHandler):
+    # 播放音频文件
+    @tornado.web.asynchronous
+    @tornado.gen.coroutine
+    def get(self):
+        logging.info(self.request)
+
+        self.render('demo/audio-play.html')

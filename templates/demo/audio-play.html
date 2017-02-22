@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <!-- Meta, title, CSS, favicons, etc. -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="Pragma" content="no-cache">
+      <meta http-equiv="Cache-Control" content="no-cache">
+
+        <title>wavesurfer.js | Media Element Example</title>
+
+        <link href="data:image/gif;" rel="icon" type="image/x-icon" />
+
+        <!-- Bootstrap -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" href="/static/css/style.css" />
+        <link rel="stylesheet" href="/static/css/ribbon.css" />
+        <link rel="screenshot" itemprop="screenshot" href="https://katspaugh.github.io/wavesurfer.js/example/screenshot.png" />
+
+        <!-- wavesurfer.js -->
+        <script src="/static/wavesurfer/wavesurfer.min.js"></script>
+
+        <script src="/static/wavesurfer/plugin/wavesurfer.regions.min.js"></script>
+
+        <!-- Demo -->
+        <script src="{{ static_url('js/audio-main.js') }}"></script>
+    </head>
+
+    <body itemscope itemtype="http://schema.org/WebApplication">
+        <div class="container">
+            <div class="header">
+                <ul class="nav nav-pills pull-right">
+                    <li><a href="/"><i class="glyphicon glyphicon-home"></i></a></li>
+                </ul>
+
+                <h1 itemprop="name">Media Element Fallback Example</h1>
+            </div>
+
+            <div id="demo">
+                <div id="waveform">
+                    <!-- Here be the waveform -->
+                </div>
+
+                <div class="controls">
+                    <button class="btn btn-primary" data-action="play">
+                        <i class="glyphicon glyphicon-play"></i>
+                        Play
+                        /
+                        <i class="glyphicon glyphicon-pause"></i>
+                        Pause
+                    </button>
+                </div>
+            </div>
+
+            <div class="row marketing">
+                <h3>How to Enable the Fallback</h3>
+
+                <hr />
+
+                <p>
+                    <strong>wavesurfer.js</strong> will automatically
+                    fallback to HTML5 Media if Web Audio is not
+                    supported. However, you can choose to use audio
+                    element manually. Simply set the <code>backend</code>
+                    option to <code>"MediaElement"</code>.
+                </p>
+
+                <p>
+<pre><code>var wavesurfer = Object.create(WaveSurfer);
+
+wavesurfer.init({
+    container: document.querySelector('#wave'),
+    backend: 'MediaElement'
+});
+</code></pre>
+                </p>
+
+                <h3>Pre-rendered Peaks</h3>
+
+
+                <p>
+<pre><code>wavesurfer.load('/static/media/demo.mp3');</code></pre>
+                </p>
+
+
+                <p>
+                    Press this button to see the same demo with pre-decoded peaks:
+                    <button class="btn btn-warning" data-action="peaks">
+                        Load with pre-rendered peaks
+                    </button>
+                </p>
+            </div>
+
+
+        </div>
+
+
+
+    </body>
+</html>

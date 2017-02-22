@@ -19,7 +19,8 @@ def map():
         ('/upload/video', getattr(api_upload, 'UploadVideoXHR')),
         ('/upload/image', getattr(api_upload, 'UploadImageXHR')),
 
-        ('/demo/upload/index', getattr(demo, 'DemoUploadIndexXHR')),
+        ('/demo/upload/index', getattr(demo, 'DemoUploadIndexHandler')),
+        ('/demo/audio/play', getattr(demo, 'DemoUpAudioPlayHandler')),
 
     ]
 

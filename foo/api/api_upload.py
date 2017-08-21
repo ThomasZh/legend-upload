@@ -50,8 +50,6 @@ class UploadVideoXHR(tornado.web.RequestHandler):
     def post(self):
         logging.info(self.request)
 
-        self.set_default_headers() # 允许跨域访问
-
         name = self.get_argument("files[].name","")
         logging.info("got name=[%r]", name)
         content_type = self.get_argument("files[].content_type","")
@@ -92,8 +90,6 @@ class UploadImageXHR(tornado.web.RequestHandler):
     @tornado.gen.coroutine
     def post(self):
         logging.info(self.request)
-
-        self.set_default_headers() # 允许跨域访问
 
         access_token = self.get_access_token()
         my_account_id = self.get_account_id(access_token)
